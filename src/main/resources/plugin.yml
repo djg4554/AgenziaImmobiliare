@@ -1,0 +1,7 @@
+name: AgenziaImmobiliare
+version: '${project.version}'
+main: org.metadevs.agenziaimmobiliare.AgenziaImmobiliare
+api-version: 1.17
+depend: [ Vault, WorldGuard ]
+commands:
+  immobili:

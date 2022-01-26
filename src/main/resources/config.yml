@@ -1,0 +1,9 @@
+options:
+  pex-immobiliare: "Immobiliare"
+  mysql:
+    active: false
+    host: localhost
+    port: 3306
+    database: mcmmo
+    username: root
+    password: root
