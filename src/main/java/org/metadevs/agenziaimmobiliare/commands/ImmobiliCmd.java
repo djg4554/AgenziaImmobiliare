@@ -9,6 +9,8 @@ import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
 
 import java.util.Arrays;
 
+import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
+
 public class ImmobiliCmd implements CommandExecutor {
 
     private final AgenziaImmobiliare plugin;
@@ -19,6 +21,12 @@ public class ImmobiliCmd implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (!plugin.isActive()) {
+
+            sender.sendMessage(color("&7[&cAgenziaImmobiliare&7] Plugin is not active check your config.yml"));
+
+            return true;
+        }
 
         if (! (sender instanceof Player)) {
             sender.sendMessage("Solo i player possono utilizzare questo comando");
@@ -26,8 +34,10 @@ public class ImmobiliCmd implements CommandExecutor {
         }
         Player player = (Player) sender;
 
-        //controlla se il player ha il permesso "outlaws.immobili"
-        if (Arrays.stream(plugin.getPermissions().getGroups()).anyMatch("").(player, "outlaws.immobili")) {
+        if (player.isOp() || Arrays.stream(plugin.getPermissions().getPlayerGroups(player)).anyMatch(s -> s.equalsIgnoreCase(plugin.getPexGroup()))) {
+            //worldguard, gui di conferma
+            plugin.getGuiManager().openImmobiliareGui(player);
+        }
 
         return true;
     }

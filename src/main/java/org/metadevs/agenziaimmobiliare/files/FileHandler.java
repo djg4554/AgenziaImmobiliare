@@ -8,6 +8,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 
+import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
+
 public abstract class FileHandler< T extends JavaPlugin> {
 
     private T plugin;
@@ -44,9 +46,9 @@ public abstract class FileHandler< T extends JavaPlugin> {
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                Bukkit.getConsoleSender().sendMessage(new ComponentBuilder("File "+ fileName + " created correctly!").color(ChatColor.GREEN).create() );
+                Bukkit.getConsoleSender().sendMessage(color("File "+ fileName + " created correctly!"));
             } catch (IOException e) {
-                Bukkit.getConsoleSender().sendMessage(new ComponentBuilder("Could not create "+ fileName + "!").color(ChatColor.RED).create());
+                Bukkit.getConsoleSender().sendMessage(color("Could not create "+ fileName + "!"));
             }
         }
     }
@@ -56,7 +58,7 @@ public abstract class FileHandler< T extends JavaPlugin> {
      * @return
      */
     public FileConfiguration getConfig() {
-        if (!file.exists()) {
+        if (file == null) {
             setupFile();
         }
         if (config == null) {

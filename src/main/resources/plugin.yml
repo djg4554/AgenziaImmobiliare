@@ -5,3 +5,4 @@ api-version: 1.17
 depend: [ Vault, WorldGuard ]
 commands:
   immobili:
+  agim:
