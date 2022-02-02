@@ -52,6 +52,16 @@ guis:
         display: "&cAnnulla"
         lore:
           - "&7Clicca per annullare l'acquisto di questo immobile"
+  list:
+    titolo-gui: "&cLista degli immobili"
+    items:
+      immobile-generico:
+        material: "BOOK"
+        custom-model-data: 0
+        display: "&c%nome_immobile%"
+        lore:
+          - "Tipo: &c%tipo%"
+          - "Proprietario: %proprietario%"
 key:
   material: "TRIPWIRE_HOOK"
   custom-model-data: 0

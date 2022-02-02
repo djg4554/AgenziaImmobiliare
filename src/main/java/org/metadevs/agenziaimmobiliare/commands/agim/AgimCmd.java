@@ -11,7 +11,6 @@ import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
 public class AgimCmd implements CommandExecutor {
 
     private final AgenziaImmobiliare plugin;
-    private String commandName = "agim";
 
     public AgimCmd(AgenziaImmobiliare plugin) {
         this.plugin = plugin;
@@ -38,22 +37,15 @@ public class AgimCmd implements CommandExecutor {
         }
 
         switch (args[0]) {
-            case "reload":
+            case "reload" -> {
                 sender.sendMessage(color("&7Reloading plugin..."));
                 plugin.load();
-                break;
-            case "create":
-                new CreateCmd(plugin, sender, args);
-                break;
-            case "delete":
-                new DeleteCmd(plugin, sender, args);
-                break;
-            case "giveKey":
-                new GiveKeyCmd(plugin, sender, args);
-                break;
-            default:
-                sendHelp(sender);
-                break;
+            }
+            case "create" -> new CreateCmd(plugin, sender, args);
+            case "delete" -> new DeleteCmd(plugin, sender, args);
+            case "giveKey" -> new GiveKeyCmd(plugin, sender, args);
+            case "list" -> new ListCmd(plugin, sender, args);
+            default -> sendHelp(sender);
         }
 
 
@@ -64,6 +56,7 @@ public class AgimCmd implements CommandExecutor {
 
 
     private void sendHelp(CommandSender sender) {
+        String commandName = "agim";
         sender.sendMessage(color("&8&m  =[&c "+ commandName +" &8&m]=  "));
         sender.sendMessage(color("                            "));
         sender.sendMessage(color("&c/"+ commandName + " reload " ));

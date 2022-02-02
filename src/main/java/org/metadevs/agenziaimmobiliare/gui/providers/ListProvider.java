@@ -15,11 +15,11 @@ import java.util.Set;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
 
-public class ImmobiliareProvider implements InventoryProvider {
+public class ListProvider implements InventoryProvider {
 
-    private final AgenziaImmobiliare plugin;
+    private AgenziaImmobiliare plugin;
 
-    public ImmobiliareProvider(AgenziaImmobiliare plugin) {
+    public ListProvider(AgenziaImmobiliare plugin) {
         this.plugin = plugin;
     }
 
@@ -43,7 +43,7 @@ public class ImmobiliareProvider implements InventoryProvider {
         while (it.hasNext()) {
             String type = it.next();
             items[i] = ClickableItem.of(new ItemParser(plugin.getConfig().getConfigurationSection("guis.immobili.items.tipo-generico").getValues(false), type, plugin.getPropertyManager().getProperties(type).size()).parse(), e -> {
-                plugin.getGuiManager().openTypeGui(contents.inventory(), player, type);
+                plugin.getGuiManager().openTypeListGui(contents.inventory(), player, type);
             });
             i++;
         }

@@ -1,7 +1,7 @@
 package org.metadevs.agenziaimmobiliare.mysql;
 
 
-import com.mysql.cj.jdbc.MysqlDataSource;
+import org.mariadb.jdbc.MariaDbDataSource;
 import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
 
 import java.sql.Connection;
@@ -11,11 +11,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class SqlHandler {
         private final Database<AgenziaImmobiliare> database;
-        private final AgenziaImmobiliare plugin;
-        private MysqlDataSource dataSource;
+    //private MysqlDataSource dataSource;
+        private MariaDbDataSource dataSource;
 
         public SqlHandler(AgenziaImmobiliare plugin) {
-            this.plugin = plugin;
             database = new Database<>(plugin);
         }
 
@@ -24,16 +23,26 @@ public class SqlHandler {
 
                 return false;
             }
+            /*
             dataSource = new MysqlDataSource();
-
             dataSource.setServerName(database.getHost());
-            dataSource.setPortNumber(database.getPort());
-            dataSource.setDatabaseName(database.getDatabase());
+
+             */
+            dataSource = new MariaDbDataSource();
+
+            dataSource.setUrl("jdbc:mariadb://" + database.getHost() + ":" + database.getPort() + "/" + database.getDatabase());
             dataSource.setUser(database.getUsername());
             dataSource.setPassword(database.getPassword());
 
 
-            dataSource.setAllowMultiQueries(true);
+            //            dataSource = new MysqlDataSource();
+            //            dataSource.setServerName(database.getHost());
+            //            dataSource.setPort(database.getPort());
+            //            dataSource.setUser(database.getUsername());
+            //            dataSource.setPassword(database.getPassword());
+            //            dataSource.setDatabaseName(database.getDatabase());
+
+
 
             try (Connection connection = dataSource.getConnection()) {
                 if (!connection.isValid(1000)) {
@@ -66,10 +75,13 @@ public class SqlHandler {
             });
         }
 
-        public MysqlDataSource getDataSource() {
+        public MariaDbDataSource getDataSource() {
             return dataSource;
         }
 
+//        public MysqlDataSource getDataSource() {
+//            return dataSource;
+//        }
 
 
 

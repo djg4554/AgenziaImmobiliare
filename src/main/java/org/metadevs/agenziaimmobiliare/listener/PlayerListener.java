@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -63,7 +64,7 @@ public class PlayerListener implements Listener {
                     }
                     if (key != null) {
                         if (key.getProperty().getState().equals(State.SALE)) {
-                            if (Arrays.stream(plugin.getPermissions().getPlayerGroups(player)).anyMatch(plugin.getPexGroup()::equals)) {
+                            if (Arrays.asList(plugin.getPermissions().getPlayerGroups(player)).contains(plugin.getPexGroup())) {
                                 plugin.getGuiManager().openConfirmGui((Player) event.getRightClicked(), player, key.getProperty(), item);
                                 player.sendMessage(getMessage("await-confirmation", key.getProperty().getName()));
                             } else {
@@ -81,7 +82,7 @@ public class PlayerListener implements Listener {
     }
 
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlaceBlock(BlockPlaceEvent event) {
         if (!plugin.isActive()) {
             return;
@@ -104,7 +105,7 @@ public class PlayerListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event) {
         if (!plugin.isActive()) {
             return;
@@ -128,7 +129,7 @@ public class PlayerListener implements Listener {
 
 
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (!plugin.isActive()) {
             return;

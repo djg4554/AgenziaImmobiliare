@@ -12,10 +12,7 @@ import org.metadevs.agenziaimmobiliare.utils.Utils;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
@@ -258,5 +255,7 @@ public class PropertyManager {
         }
         return null;
     }
+
+
 
 }
