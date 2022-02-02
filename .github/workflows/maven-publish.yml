@@ -13,4 +13,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          java-version: 8
+          java-version: 17
