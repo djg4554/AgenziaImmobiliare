@@ -75,11 +75,32 @@ key:
 
 
 messages:
-  player-only: "Questo comando è disponibile solo per i giocatori"
+  agim:
+    not-enough-permission: "&cNon hai i permessi per usare questo comando"
+    create-subcommand:
+      player-only: "&cQuesto comando è disponibile solo per i giocatori"
+      property-alredy-exists: "&cQuesto immobile esiste già" #placeholders: %nome% %tipo%
+      region-not-exists: "Questa regione non esiste"
+      region-alredy-linked: "Questa regione è già collegata ad un immobile"
+      invalid-price: "Il prezzo inserito non è valido"
+      property-created: "&aHai creato un immobile"
+      sql-error: "&cSi è verificato un errore nell'inserimento dell'immobile nel database"
+    delete-subcommand:
+      player-only: "&cQuesto comando è disponibile solo per i giocatori"
+      property-removed: "&aHai rimosso l'immobile" #placeholders: %nome%
+      property-not-exists: "&cQuesto immobile non esiste"
+      sql-error: "&cSi è verificato un errore durante l'eliminazione dell'immobile" #placeholders: %nome%
+    givekey:
+      player-only: "Questo comando è disponibile solo per i giocatori"
+      property-not-exists: "&cQuesto immobile non esiste" #placeholders: %nome%
+      inventory-full: "&cIl tuo inventario è pieno"
+      key-given: "&aHai ricevuto la chiave per l'immopbile "  #placeholders: %nome%
+    list:
+      player-only: "&cQuesto comando è disponibile solo per i giocatori"
   no-permission: "Non hai il permesso di vendere questo immobile"
   property:
     alredy-exists: "Questo immobile è già presente nel database" #placeholders : %nome% %tipo%
-    invalid-price: "Il prezzo inserito non è valido"
+
     bought: "Hai acquistato %nome% per %prezzo% "
     sold: "Hai venduto %nome% per %prezzo% "
     sale-cancelled: "L'acquirente ha annullato l'acquisto"

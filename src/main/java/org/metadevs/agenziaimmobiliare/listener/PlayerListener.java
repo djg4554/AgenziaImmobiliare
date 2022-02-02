@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -103,10 +102,10 @@ public class PlayerListener implements Listener {
                 event.setCancelled(true);
             }
         }
-    }
+  }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onBlockBreak(BlockBreakEvent event) {
+    //@EventHandler(priority = EventPriority.HIGHEST)
+    /*public void onBlockBreak(BlockBreakEvent event) {
         if (!plugin.isActive()) {
             return;
         }
@@ -126,6 +125,8 @@ public class PlayerListener implements Listener {
             }
         }
     }
+
+     */
 
 
 

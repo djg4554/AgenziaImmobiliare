@@ -86,6 +86,38 @@ public class ItemParser {
             lore.add(color("&c&lThe lore is broken."));
         }
     }
+    public ItemParser(Map<String, Object> values, String nome, String tipo, String proprietario) {
+        this.values = values;
+        lore = new ArrayList<>();
+        try {
+            material = Material.valueOf((String) values.get("material"));
+        } catch (IllegalArgumentException e) {
+            material = Material.RED_WOOL;
+            broken = true;
+        }
+        try {
+            customModelData = (Integer) values.get("custom-model-data");
+        } catch (ClassCastException e) {
+
+            broken = true;
+        }
+
+        try {
+            name = PlaceholderParser.parse(color((String) values.get("display")), "nome_immobile" , nome);
+
+        } catch (ClassCastException e) {
+            broken = true;
+            name = color("&c&lThe name is broken.");
+        }
+        try {
+            List<String> lore = (List<String>) values.get("lore");
+            lore.forEach(s -> this.lore.add(PlaceholderParser.parse(color(s),  "tipo", String.valueOf(tipo), "proprietario", proprietario)));
+
+        } catch (ClassCastException e) {
+            broken = true;
+            lore.add(color("&c&lThe lore is broken."));
+        }
+    }
 
     //parser for a key
     public ItemParser(Map<String, Object> values, Property property) {

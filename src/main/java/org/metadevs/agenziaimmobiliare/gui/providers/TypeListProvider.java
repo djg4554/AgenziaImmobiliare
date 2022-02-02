@@ -4,6 +4,7 @@ import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
 import fr.minuskube.inv.content.Pagination;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
@@ -48,7 +49,7 @@ public class TypeListProvider implements InventoryProvider {
         while (it.hasNext()) {
             Property property = it.next();
             //todo parse sistemare
-            items[i] = ClickableItem.empty(new ItemParser(plugin.getConfig().getConfigurationSection("guis.list.items.immobile-generico").getValues(false), property.getName(), property.getPrice(), true).parse());
+            items[i] = ClickableItem.empty(new ItemParser(plugin.getConfig().getConfigurationSection("guis.list.items.immobile-generico").getValues(false), property.getName(), property.getType(), Bukkit.getOfflinePlayer(property.getOwner()).getName()).parse());
             i++;
         }
         pagination.setItems(items);

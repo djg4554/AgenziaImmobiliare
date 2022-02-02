@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
+import static org.metadevs.agenziaimmobiliare.utils.Utils.getMessage;
 
 public class PropertyManager {
     private final AgenziaImmobiliare plugin;
@@ -147,11 +148,9 @@ public class PropertyManager {
 
                     Property property = new Property(nome, regionId, tipo, State.SALE, null, prezzo);
                     addProperty(property);
-                    creator.sendMessage(Utils.getMessage("property.created", "§aImmobile creato con successo"));
+                    creator.sendMessage(Utils.getMessage("agim.create-subcommand.property-created", "§aImmobile creato con successo"));
                 } catch (SQLException e) {
-                    creator.sendMessage(color("§cErrore durante la creazione dell'immobile"));
-                    Bukkit.getConsoleSender().sendMessage("§c[AgenziaImmobiliare] Errore durante la creazione dell'Immobile");
-
+                    creator.sendMessage(getMessage("agim.create-subcommand.sql-error" , "§cErrore durante la creazione dell'immobile"));
                 }
             }
 
@@ -164,7 +163,6 @@ public class PropertyManager {
 
     public CompletableFuture<Boolean> removeProperty(String name) {
         return CompletableFuture.supplyAsync(() -> {
-
 
             for (String type : propertiesTypes.keySet()) {
                 if (propertiesTypes.get(type).remove(name) != null) {
@@ -182,7 +180,7 @@ public class PropertyManager {
             statement.setString(1, name);
             statement.executeUpdate();
         } catch (SQLException e) {
-            Bukkit.getConsoleSender().sendMessage("§c[AgenziaImmobiliare] Errore durante la rimozione dell'Immobile");
+            Bukkit.getConsoleSender().sendMessage("§c[AgenziaImmobiliare] Errore durante la cancellazione dell'immobile" + name);
         }
     }
 

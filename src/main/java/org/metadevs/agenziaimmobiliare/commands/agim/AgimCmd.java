@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
+import static org.metadevs.agenziaimmobiliare.utils.Utils.getMessage;
 
 public class AgimCmd implements CommandExecutor {
 
@@ -20,7 +21,7 @@ public class AgimCmd implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         if (!sender.isOp()) {
-            sender.sendMessage("You don't have permission to execute this command");
+            sender.sendMessage(getMessage("agim.not-enough-permission", "You don't have permission to execute this command"));
             return true;
         }
         if (args.length == 0) {
@@ -30,15 +31,14 @@ public class AgimCmd implements CommandExecutor {
 
         if (!plugin.isActive()) {
             if (args[0].equalsIgnoreCase("reload")) {
-                plugin.load();
-
                 sender.sendMessage(color("&7Plugin reloaded"));
+                plugin.load();
             }
         }
 
         switch (args[0]) {
             case "reload" -> {
-                sender.sendMessage(color("&7Reloading plugin..."));
+                sender.sendMessage(color("&7Plugin reloaded"));
                 plugin.load();
             }
             case "create" -> new CreateCmd(plugin, sender, args);
@@ -62,7 +62,7 @@ public class AgimCmd implements CommandExecutor {
         sender.sendMessage(color("&c/"+ commandName + " reload " ));
         sender.sendMessage(color(" - &7 Reload the plugin"));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " create <tipo> <nome> <regionId> <prezzo>" ));
+        sender.sendMessage(color("&c/"+ commandName + " create <tipo> <regionId> <prezzo> <nome>" ));
         sender.sendMessage(color(" - &7 Crea un nuovo immobile"));
         sender.sendMessage(color("                            "));
         sender.sendMessage(color("&c/"+ commandName + " delete <nome>" ));
@@ -70,6 +70,9 @@ public class AgimCmd implements CommandExecutor {
         sender.sendMessage(color("                            "));
         sender.sendMessage(color("&c/"+ commandName + " giveKey <nome>" ));
         sender.sendMessage(color(" - &7 Restituisce la chiave dell'immobile <nome> "));//da usare in caso di perdita
+        sender.sendMessage(color("                            "));
+        sender.sendMessage(color("&c/"+ commandName + " list" ));
+        sender.sendMessage(color(" - &7 Mostra una lista di tutti gli immobili"));//da usare in caso di perdita
         sender.sendMessage(color("                            "));
         sender.sendMessage(color("&c/"+ commandName + " help "));
         sender.sendMessage(color(" - &7 Show this page "));

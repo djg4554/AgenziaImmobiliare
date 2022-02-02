@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
 import org.metadevs.agenziaimmobiliare.structure.Property;
+import org.metadevs.agenziaimmobiliare.utils.PlaceholderParser;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
 import static org.metadevs.agenziaimmobiliare.utils.Utils.getMessage;
@@ -12,9 +13,9 @@ import static org.metadevs.agenziaimmobiliare.utils.Utils.getMessage;
 public class GiveKeyCmd {
 
     public GiveKeyCmd(AgenziaImmobiliare plugin, @NotNull CommandSender sender, String... args) {
-
+        String giveCommandSection = "agim.givekey.";
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getMessage("player-only", "&cQuesto comando è disponibile solo per i giocatori."));
+            sender.sendMessage(getMessage(giveCommandSection + "player-only", "&cQuesto comando è disponibile solo per i giocatori."));
             return;
         }
 
@@ -31,7 +32,7 @@ public class GiveKeyCmd {
         if ((property = plugin.getPropertyManager().getPropertyByName(nome)) != null) {
             plugin.getKeyManager().giveLostKey(player, property);
         } else {
-            sender.sendMessage(color("§cLa proprietà '" + nome + "' non esiste."));
+            sender.sendMessage(PlaceholderParser.parse(getMessage(giveCommandSection + "property-not-exists", "L'immobile non esiste"), "nome", nome));
         }
     }
 }

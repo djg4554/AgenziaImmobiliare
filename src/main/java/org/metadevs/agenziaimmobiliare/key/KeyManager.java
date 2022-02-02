@@ -2,6 +2,7 @@ package org.metadevs.agenziaimmobiliare.key;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -9,12 +10,11 @@ import org.metadevs.agenziaimmobiliare.AgenziaImmobiliare;
 import org.metadevs.agenziaimmobiliare.structure.Property;
 import org.metadevs.agenziaimmobiliare.utils.ItemParser;
 import org.metadevs.agenziaimmobiliare.utils.PlaceholderParser;
-import org.metadevs.agenziaimmobiliare.utils.Utils;
-import org.bukkit.Material;
 
 import java.io.IOException;
 
 import static org.metadevs.agenziaimmobiliare.utils.Utils.color;
+import static org.metadevs.agenziaimmobiliare.utils.Utils.getMessage;
 
 public class KeyManager {
     private AgenziaImmobiliare plugin;
@@ -37,11 +37,11 @@ public class KeyManager {
         }
 
         if (!player.getInventory().addItem(nbtItem.getItem()).isEmpty()) {
-            player.sendMessage(Utils.getMessage("key.give.error", "&cIl tuo inventario è pieno!."));
+            player.sendMessage(getMessage("key.give.error", "&cIl tuo inventario è pieno!."));
             return;
         }
 
-        player.sendMessage(Utils.getMessage("key.give.success", "&aHai ricevuto la chiave per la proprietà &6" + property.getName() + "&a."));
+        player.sendMessage(getMessage("key.give.success", "&aHai ricevuto la chiave per la proprietà &6" + property.getName() + "&a."));
 
     }
 
@@ -61,11 +61,11 @@ public class KeyManager {
         meta.getLore().add(PlaceholderParser.parse(plugin.getConfig().getString("key.owner-lore", "&cbroken lore owner name"), "proprietario",player.getName()));
         key.setItemMeta(meta);
         if (!player.getInventory().addItem(key).isEmpty()) {
-            player.sendMessage(Utils.getMessage("key.give.error", "&cIl tuo inventario è pieno!."));
+            player.sendMessage(getMessage("agim.givekey.inventory-full", "&cIl tuo inventario è pieno!"));
             return;
         }
 
-        player.sendMessage(Utils.getMessage("key.give.success", "&aHai ricevuto la chiave per la proprietà &6" + property.getName() + "&a."));
+        player.sendMessage(PlaceholderParser.parse(getMessage("agim.givekey.key-given", "&aHai ricevuto la chiave per la proprietà &6" + property.getName() + "&a."), "nome", property.getName()));
 
     }
 
