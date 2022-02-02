@@ -58,6 +58,7 @@ public class ListProvider implements InventoryProvider {
             contents.set(4, 3, ClickableItem.of(new ItemBuilder(Material.ARROW).name(color(plugin.getConfig().getString(("guis.pagination.previous-page")))).build(), e -> contents.inventory().open(player, pagination.previous().getPage())));
         }
 
+
         if (!pagination.isLast()) {
             contents.set(4, 5, ClickableItem.of(new ItemBuilder(Material.ARROW).name(color(plugin.getConfig().getString(("guis.pagination.next-page")))).build(), e -> contents.inventory().open(player, pagination.next().getPage())));
         }

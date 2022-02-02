@@ -98,6 +98,8 @@ messages:
     list:
       player-only: "&cQuesto comando è disponibile solo per i giocatori"
   no-permission: "Non hai il permesso di vendere questo immobile"
+
+
   property:
     alredy-exists: "Questo immobile è già presente nel database" #placeholders : %nome% %tipo%
 

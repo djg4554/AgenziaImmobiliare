@@ -65,7 +65,7 @@ public class GuiManager {
 
     public void openTypeListGui(SmartInventory inventory, Player player, String type) {
         SmartInventory.builder()
-                .title(PlaceholderParser.parse(color(plugin.getConfig().getString("guis.tipo-gui.titolo-gui")),"tipo", type))
+                .title(PlaceholderParser.parse(color(plugin.getConfig().getString("guis.list.titolo-gui")),"tipo", type))
                 .provider(new TypeListProvider(plugin, type))
                 .parent(inventory)
                 .manager(inventoryManager)
