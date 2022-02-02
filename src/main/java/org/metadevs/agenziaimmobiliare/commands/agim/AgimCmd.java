@@ -49,34 +49,32 @@ public class AgimCmd implements CommandExecutor {
         }
 
 
-
         return true;
     }
 
 
-
     private void sendHelp(CommandSender sender) {
         String commandName = "agim";
-        sender.sendMessage(color("&8&m  =[&c "+ commandName +" &8&m]=  "));
+        sender.sendMessage(color("&8&m  =[&c " + commandName + " &8&m]=  "));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " reload " ));
+        sender.sendMessage(color("&c/" + commandName + " reload "));
         sender.sendMessage(color(" - &7 Reload the plugin"));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " create <tipo> <regionId> <prezzo> <nome>" ));
+        sender.sendMessage(color("&c/" + commandName + " create <tipo> <regionId> <prezzo> <nome>"));
         sender.sendMessage(color(" - &7 Crea un nuovo immobile"));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " delete <nome>" ));
+        sender.sendMessage(color("&c/" + commandName + " delete <nome>"));
         sender.sendMessage(color(" - &7 Elimina l'immobile <nome> "));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " giveKey <nome>" ));
+        sender.sendMessage(color("&c/" + commandName + " giveKey <nome>"));
         sender.sendMessage(color(" - &7 Restituisce la chiave dell'immobile <nome> "));//da usare in caso di perdita
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " list" ));
+        sender.sendMessage(color("&c/" + commandName + " list"));
         sender.sendMessage(color(" - &7 Mostra una lista di tutti gli immobili"));//da usare in caso di perdita
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&c/"+ commandName + " help "));
+        sender.sendMessage(color("&c/" + commandName + " help "));
         sender.sendMessage(color(" - &7 Show this page "));
         sender.sendMessage(color("                            "));
-        sender.sendMessage(color("&8&m  =[&c "+ commandName +" &8&m]=  "));
+        sender.sendMessage(color("&8&m  =[&c " + commandName + " &8&m]=  "));
     }
 }
